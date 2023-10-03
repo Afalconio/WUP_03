@@ -42,7 +42,7 @@ basicCN + geom_boxplot()
 
 ``` {r include = TRUE, echo = FALSE}
 ggplot(data = mydata, aes(x = Seat, y = alcohol) ) +
-geom_boxplot (notch=FALSE,outlier.colour = "red",outlier.size = 2, fill = "darkgray") +
+geom_boxplot (notch=TRUE,outlier.colour = "red",outlier.size = 2, fill = "darkgray") +
 stat_boxplot (geom ='errorbar') +
 labs (x = "Seat Row", y = "Alcohol", title = "Alcohol consumption by Seating") +
 theme (plot.title = element_text(hjust = 0.5, size = 16) )
@@ -51,7 +51,10 @@ theme (plot.title = element_text(hjust = 0.5, size = 16) )
 This box plot shows that the people seated in the back row consumed more alcohol in the median of the data with a much wider range of alcohol consumption. The people seated in the middle consumed less alcohol with the exception of 6 outliers when comparing the median of its alcohol consumption to the median of the alcohol consumption for the back row. The front row seemingly consumed the least amount of alcohol with the exception of two outliers as this group had the lowest median and smallest range of the three seating arrangements.
 
 ## Numerical Summarys 
-
+``` {r include = TRUE, echo = FALSE}
+favstats(alcohol~Seat,data=mydata)
+```
+The favstats data shows that the mean alcohol consumption is significantly higher in the Back row group when compared to the Front and Middle rows. The Middle row has an alcohol consumption closer to the Front row with a median of about 3.3 but, the Front row has the mean of the lowest alcohol consumption of about 1.8. The arrangements of the seating and their correlation to alcohol consumption is consistent across the mean and the median.
 
 ## Inferential Tests
 
