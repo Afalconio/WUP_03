@@ -1,7 +1,7 @@
 ---
 title: "Alcohol vs Seat choice"
-author: "Your Name"
-date: "Fall 2020"
+author: "Anthony Falconio"
+date: "Fall 2023"
 output: html_document
 ---
 
@@ -12,30 +12,51 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r include=FALSE}
 require(tidyverse)
 require(tigerstats)
-davisdata <- read.csv(file="UCDavis.csv")
+mydata <- read.csv(file="UCDavis.csv")
 ```
+
+## Methods
+The problem involving the amount of alcohol consumed and the choice of seat is a numerical~categorical problem as looking at the davisdata allows us to see that alcohol is categorized as a numerical variable and Seat is categorized as a character variable. Since this is the case, I will be using the CandP helper files with the main use of the Numerical~Cat file. We will be comparing the amount of alcohol consumed between the front, middle, and back rows.
+
+$H_0$: There is no difference between the average number of drinks imbibed between people conditioned on the row they sit in.
+
+$H_A$: The average number drinks is different between at least two rows.   
+
 ## Our Goal is to answer this question Is there a difference between the alcohol consumed between the row
 ## you choose to sit in??
+
+
 
 ## Now with ggplot - first select the basic data
 
 ```{r}
-basicCN <- ggplot(davisdata,aes(y=alcohol,x=Seat))
+basicCN <- ggplot(mydata,aes(y=alcohol,x=Seat))
 ```
 ## Now add in boxplot
 
-```{r}
+``` {r}
 basicCN + geom_boxplot()
 ```
   
-  
 ### get fancy  
 
-```{r}
-basicCN + geom_boxplot(notch=TRUE,outlier.color = "red") + stat_boxplot(geom ='errorbar') + labs(title="Fancy notch boxplot \n with 2 lines")
+``` {r include = TRUE, echo = FALSE}
+ggplot(data = mydata, aes(x = Seat, y = alcohol) ) +
+geom_boxplot (notch=FALSE,outlier.colour = "red",outlier.size = 2, fill = "darkgray") +
+stat_boxplot (geom ='errorbar') +
+labs (x = "Seat Row", y = "Alcohol", title = "Alcohol consumption by Seating") +
+theme (plot.title = element_text(hjust = 0.5, size = 16) )
 ```
 
+This box plot shows that the people seated in the back row consumed more alcohol in the median of the data with a much wider range of alcohol consumption. The people seated in the middle consumed less alcohol with the exception of 6 outliers when comparing the median of its alcohol consumption to the median of the alcohol consumption for the back row. The front row seemingly consumed the least amount of alcohol with the exception of two outliers as this group had the lowest median and smallest range of the three seating arrangements.
+
 ## Numerical Summarys 
+``` {r include = TRUE, echo = FALSE}
+favstats(alcohol~Seat,data=mydata)
+```
+
+
+
 
 ## Inferential Tests
 
