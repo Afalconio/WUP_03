@@ -61,6 +61,9 @@ The favstats data shows that the mean alcohol consumption is significantly highe
 model1 <- aov(alcohol~Seat,data=mydata)
 summary.aov(model1)
 ```
+```{r include = TRUE, echo = FALSE}}
+plot(TukeyHSD(model1,conf.level = 0.99))
+```
 
 
 ## Conclusions
