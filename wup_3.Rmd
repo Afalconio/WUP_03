@@ -68,4 +68,4 @@ The TukeyHSD  test shows that the there is a significant difference between the 
 
 ## Conclusions
 
-
+Looking at the data and analyzing it through numerical summaries and the box plots allow us to see the difference in alcohol consumption between the different seating rows. It was found that there was a significant difference in alcohol consumption when comparing the middle-back rows and the front-back rows. This confirms the alternate hypothesis that the average number of drinks is different between two rows as confirmed by the TukeyHSD plot with a 99% confidence interval.
